@@ -1,0 +1,25 @@
+{
+  "nb_clients": 307511,
+  "nb_variables": 43,
+  "taux_defaut_pct": 8.07,
+  "logistic": {
+    "auc": 0.7528,
+    "gini": 0.5056
+  },
+  "lightgbm": {
+    "auc": 0.7742,
+    "gini": 0.5484,
+    "nb_arbres": 749
+  },
+  "seuil_refus_pd": 0.1818,
+  "hypotheses_cout": {
+    "accepter_un_mauvais": 0.45,
+    "refuser_un_bon": 0.1
+  },
+  "decisions_test": {
+    "taux_refus_pct": 10.2,
+    "defauts_evites_pct": 36.3,
+    "bons_clients_refuses_pct": 7.9,
+    "taux_defaut_acceptes_pct": 5.73
+  }
+}

@@ -5,3 +5,10 @@ psycopg2-binary>=2.9   # pilote PostgreSQL
 python-dotenv>=1.0     # lit le fichier .env
 pytest>=8.0            # tests automatiques
 ipykernel>=6.29        # exécuter des notebooks dans VS Code
+
+# Brique 2 : modèle de scoring
+scikit-learn>=1.5      # régression logistique, découpage, métriques
+lightgbm>=4.5          # modèle d'arbres de décision (gradient boosting)
+shap>=0.46             # explication des prédictions
+matplotlib>=3.8        # graphiques
+tabulate>=0.9          # tableaux Markdown dans les rapports
