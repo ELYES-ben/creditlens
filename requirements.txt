@@ -4,3 +4,4 @@ sqlalchemy>=2.0        # connexion à une base SQL
 psycopg2-binary>=2.9   # pilote PostgreSQL
 python-dotenv>=1.0     # lit le fichier .env
 pytest>=8.0            # tests automatiques
+ipykernel>=6.29        # exécuter des notebooks dans VS Code
