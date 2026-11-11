@@ -1,0 +1,19 @@
+# Secrets (mots de passe, clés API)
+.env
+
+# Données brutes : trop lourdes et disponibles sur Kaggle
+data/raw/*
+
+# Environnement Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Fichiers lourds générés
+*.pkl
+
+# Fichiers système
+Thumbs.db
+.DS_Store
