@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: creditlens
+Version: 0.1.0
+Summary: Analyse du risque crédit bancaire augmentée par l'IA
+Requires-Python: >=3.11
