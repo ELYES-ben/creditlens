@@ -1,0 +1,67 @@
+{
+  "nb_transactions": 284807,
+  "nb_fraudes": 492,
+  "taux_fraude_test_pct": 0.132,
+  "pr_auc_hasard": 0.0013,
+  "isolation_forest": {
+    "pr_auc": 0.0416,
+    "roc_auc": 0.9503
+  },
+  "lightgbm": {
+    "pr_auc": 0.7747,
+    "roc_auc": 0.983,
+    "nb_arbres": 308
+  },
+  "alertes_lightgbm": [
+    {
+      "alertes_pct": 0.1,
+      "nb_alertes": 56,
+      "fraudes_attrapees": 53,
+      "rappel_pct": 70.7,
+      "precision_pct": 94.6,
+      "montant_fraude_attrape_pct": 51.5
+    },
+    {
+      "alertes_pct": 0.5,
+      "nb_alertes": 284,
+      "fraudes_attrapees": 64,
+      "rappel_pct": 85.3,
+      "precision_pct": 22.5,
+      "montant_fraude_attrape_pct": 82.1
+    },
+    {
+      "alertes_pct": 1.0,
+      "nb_alertes": 569,
+      "fraudes_attrapees": 65,
+      "rappel_pct": 86.7,
+      "precision_pct": 11.4,
+      "montant_fraude_attrape_pct": 82.2
+    }
+  ],
+  "alertes_isolation_forest": [
+    {
+      "alertes_pct": 0.1,
+      "nb_alertes": 56,
+      "fraudes_attrapees": 0,
+      "rappel_pct": 0.0,
+      "precision_pct": 0.0,
+      "montant_fraude_attrape_pct": 0.0
+    },
+    {
+      "alertes_pct": 0.5,
+      "nb_alertes": 284,
+      "fraudes_attrapees": 16,
+      "rappel_pct": 21.3,
+      "precision_pct": 5.6,
+      "montant_fraude_attrape_pct": 27.6
+    },
+    {
+      "alertes_pct": 1.0,
+      "nb_alertes": 569,
+      "fraudes_attrapees": 36,
+      "rappel_pct": 48.0,
+      "precision_pct": 6.3,
+      "montant_fraude_attrape_pct": 50.6
+    }
+  ]
+}
