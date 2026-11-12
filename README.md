@@ -5,7 +5,7 @@
 > **RAG réglementaire** au service d'un analyste — le tout **100 % local et gratuit**.
 
 **Auteur :** Ilyasse Ben Othman · [LinkedIn](https://linkedin.com/in/ilyasse-ben-othman) · élève-ingénieur IMT Mines Albi / Mines Rabat
-**Cible métier :** data analyst en banque / risque de crédit
+
 
 ![Aperçu du dashboard](docs/dashboard_preview.png)
 
