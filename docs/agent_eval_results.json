@@ -1,0 +1,462 @@
+{
+  "nb_questions": 30,
+  "nb_correct": 30,
+  "fiabilite_pct": 100.0,
+  "modele": "qwen2.5:3b",
+  "details": [
+    {
+      "id": "q01",
+      "question": "Combien de clients y a-t-il dans le portefeuille ?",
+      "correct": true,
+      "attendu": [
+        307511.0
+      ],
+      "obtenu": [
+        307511.0
+      ],
+      "sql_agent": "SELECT COUNT(*) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q02",
+      "question": "Quel est le taux de défaut global du portefeuille, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        8.07
+      ],
+      "obtenu": [
+        8.07
+      ],
+      "sql_agent": "SELECT ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q03",
+      "question": "Combien de clients ont fait défaut ?",
+      "correct": true,
+      "attendu": [
+        24825.0
+      ],
+      "obtenu": [
+        24825.0
+      ],
+      "sql_agent": "SELECT COUNT(*) FROM marts.v_portefeuille WHERE is_default = 1",
+      "erreur": ""
+    },
+    {
+      "id": "q04",
+      "question": "Combien de clients y a-t-il dans chaque classe de risque ?",
+      "correct": true,
+      "attendu": [
+        71735.0,
+        84130.0,
+        75992.0,
+        48770.0,
+        26884.0
+      ],
+      "obtenu": [
+        71735.0,
+        84130.0,
+        75992.0,
+        48770.0,
+        26884.0
+      ],
+      "sql_agent": "SELECT risk_class, COUNT(*) AS client_count FROM marts.v_portefeuille GROUP BY risk_class",
+      "erreur": ""
+    },
+    {
+      "id": "q05",
+      "question": "Quel est le taux de défaut des clients de moins de 30 ans, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        11.47
+      ],
+      "obtenu": [
+        11.47
+      ],
+      "sql_agent": "SELECT ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille WHERE age_years < 30",
+      "erreur": ""
+    },
+    {
+      "id": "q06",
+      "question": "Quel est le revenu moyen des clients ?",
+      "correct": true,
+      "attendu": [
+        168798.0
+      ],
+      "obtenu": [
+        168798.0
+      ],
+      "sql_agent": "SELECT ROUND(AVG(income)) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q07",
+      "question": "Combien y a-t-il de femmes et combien d'hommes ?",
+      "correct": true,
+      "attendu": [
+        202448.0,
+        105059.0
+      ],
+      "obtenu": [
+        202448.0,
+        105059.0,
+        4.0
+      ],
+      "sql_agent": "SELECT gender, COUNT(*) AS nombre FROM marts.v_portefeuille GROUP BY gender",
+      "erreur": ""
+    },
+    {
+      "id": "q08",
+      "question": "Quel est le taux de défaut des femmes et celui des hommes, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        7.0,
+        10.14
+      ],
+      "obtenu": [
+        7.0,
+        10.14,
+        0.0
+      ],
+      "sql_agent": "SELECT gender, ROUND(100.0 * AVG(is_default), 2) AS defect_rate_percentage FROM marts.v_portefeuille GROUP BY gender ORDER BY gender",
+      "erreur": ""
+    },
+    {
+      "id": "q09",
+      "question": "Quel est le montant moyen de crédit par type de contrat ?",
+      "correct": true,
+      "attendu": [
+        627966.0,
+        324018.0
+      ],
+      "obtenu": [
+        627965.7325379539,
+        324017.9821715223
+      ],
+      "sql_agent": "SELECT AVG(credit_amount) FROM marts.v_portefeuille GROUP BY contract_type",
+      "erreur": ""
+    },
+    {
+      "id": "q10",
+      "question": "Quel est le taux de défaut par niveau d'études, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        1.83,
+        5.36,
+        8.48,
+        10.93,
+        8.94
+      ],
+      "obtenu": [
+        1.83,
+        5.36,
+        8.48,
+        10.93,
+        8.94
+      ],
+      "sql_agent": "SELECT education, ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille GROUP BY education ORDER BY education",
+      "erreur": ""
+    },
+    {
+      "id": "q11",
+      "question": "Combien de clients sont dans la classe de risque E ?",
+      "correct": true,
+      "attendu": [
+        26884.0
+      ],
+      "obtenu": [
+        26884.0
+      ],
+      "sql_agent": "SELECT COUNT(*) FROM marts.v_portefeuille WHERE risk_class = 'E'",
+      "erreur": ""
+    },
+    {
+      "id": "q12",
+      "question": "Quelle est la probabilité de défaut moyenne du portefeuille, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        8.06
+      ],
+      "obtenu": [
+        8.06
+      ],
+      "sql_agent": "SELECT ROUND(AVG(pd) * 100.0, 2) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q13",
+      "question": "Quelle est la perte attendue totale du portefeuille ?",
+      "correct": true,
+      "attendu": [
+        6210856609.0
+      ],
+      "obtenu": [
+        6210856609.0
+      ],
+      "sql_agent": "SELECT ROUND(SUM(expected_loss)) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q14",
+      "question": "Quel est l'âge moyen des clients qui ont fait défaut ?",
+      "correct": true,
+      "attendu": [
+        40.8
+      ],
+      "obtenu": [
+        41.0
+      ],
+      "sql_agent": "SELECT ROUND(AVG(age_years)) FROM marts.v_portefeuille WHERE is_default = 1",
+      "erreur": ""
+    },
+    {
+      "id": "q15",
+      "question": "Quel est le taux de défaut par type de revenu, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        0.0,
+        7.48,
+        40.0,
+        5.39,
+        5.75,
+        0.0,
+        36.36,
+        9.59
+      ],
+      "obtenu": [
+        0.0,
+        7.48,
+        40.0,
+        5.39,
+        5.75,
+        0.0,
+        36.36,
+        9.59
+      ],
+      "sql_agent": "SELECT income_type, ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille GROUP BY income_type ORDER BY income_type",
+      "erreur": ""
+    },
+    {
+      "id": "q16",
+      "question": "Combien de clients ont déjà eu au moins une demande de crédit refusée par le passé ?",
+      "correct": true,
+      "attendu": [
+        100294.0
+      ],
+      "obtenu": [
+        100294.0
+      ],
+      "sql_agent": "SELECT COUNT(*) FROM marts.v_portefeuille WHERE prev_nb_refused > 0",
+      "erreur": ""
+    },
+    {
+      "id": "q17",
+      "question": "Quel est le taux d'effort moyen (annuity_to_income) des clients ?",
+      "correct": true,
+      "attendu": [
+        0.181
+      ],
+      "obtenu": [
+        0.18093329994569088
+      ],
+      "sql_agent": "SELECT AVG(annuity_to_income) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q18",
+      "question": "Quel est le montant de crédit maximum accordé ?",
+      "correct": true,
+      "attendu": [
+        4050000.0
+      ],
+      "obtenu": [
+        4050000.0
+      ],
+      "sql_agent": "SELECT MAX(credit_amount) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q19",
+      "question": "Quel est le taux de défaut des clients de la classe de risque D, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        14.85
+      ],
+      "obtenu": [
+        15.0
+      ],
+      "sql_agent": "SELECT ROUND(100.0 * AVG(is_default)) FROM marts.v_portefeuille WHERE risk_class = 'D'",
+      "erreur": ""
+    },
+    {
+      "id": "q20",
+      "question": "Combien de clients ont un revenu supérieur à 200000 ?",
+      "correct": true,
+      "attendu": [
+        87915.0
+      ],
+      "obtenu": [
+        87915.0
+      ],
+      "sql_agent": "SELECT COUNT(*) FROM marts.v_portefeuille WHERE income > 200000",
+      "erreur": ""
+    },
+    {
+      "id": "q21",
+      "question": "Quelle est la perte attendue moyenne par classe de risque ?",
+      "correct": true,
+      "attendu": [
+        4771.0,
+        10145.0,
+        18838.0,
+        34484.0,
+        70740.0
+      ],
+      "obtenu": [
+        4771.22,
+        10144.83,
+        18838.05,
+        34484.38,
+        70739.63
+      ],
+      "sql_agent": "SELECT risk_class, ROUND(AVG(expected_loss), 2) AS average_expected_loss FROM marts.v_portefeuille GROUP BY risk_class ORDER BY risk_class",
+      "erreur": ""
+    },
+    {
+      "id": "q22",
+      "question": "Quel est le nombre moyen de crédits dans d'autres établissements (bureau_nb_credits) ?",
+      "correct": true,
+      "attendu": [
+        4.77
+      ],
+      "obtenu": [
+        4.765114093479583
+      ],
+      "sql_agent": "SELECT AVG(bureau_nb_credits) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q23",
+      "question": "Quel est le taux de défaut des clients mariés, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        7.56
+      ],
+      "obtenu": [
+        7.56
+      ],
+      "sql_agent": "SELECT ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille WHERE family_status = 'Married'",
+      "erreur": ""
+    },
+    {
+      "id": "q24",
+      "question": "Quels sont les 5 types de logement et le nombre de clients pour chacun ?",
+      "correct": true,
+      "attendu": [
+        272868.0,
+        14840.0,
+        11183.0,
+        4881.0,
+        2617.0
+      ],
+      "obtenu": [
+        272868.0,
+        14840.0,
+        11183.0,
+        4881.0,
+        2617.0
+      ],
+      "sql_agent": "SELECT housing_type, COUNT(*) FROM marts.v_portefeuille GROUP BY housing_type ORDER BY COUNT(*) DESC LIMIT 5",
+      "erreur": ""
+    },
+    {
+      "id": "q25",
+      "question": "Quel est le revenu moyen des clients qui ont fait défaut et de ceux qui n'ont pas fait défaut ?",
+      "correct": true,
+      "attendu": [
+        169078.0,
+        165612.0
+      ],
+      "obtenu": [
+        165612.0,
+        169078.0
+      ],
+      "sql_agent": "SELECT ROUND(AVG(CASE WHEN is_default = 1 THEN income END)), ROUND(AVG(CASE WHEN is_default = 0 THEN income END)) FROM marts.v_portefeuille",
+      "erreur": ""
+    },
+    {
+      "id": "q26",
+      "question": "Combien de clients ont une part d'échéances en retard (inst_late_share) supérieure à 0.2 ?",
+      "correct": true,
+      "attendu": [
+        37475.0
+      ],
+      "obtenu": [
+        37475.0
+      ],
+      "sql_agent": "SELECT COUNT(*) FROM marts.v_portefeuille WHERE inst_late_share > 0.2",
+      "erreur": ""
+    },
+    {
+      "id": "q27",
+      "question": "Quel est le taux de défaut des clients ayant un taux d'effort supérieur à 0.3, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        8.16
+      ],
+      "obtenu": [
+        8.0
+      ],
+      "sql_agent": "SELECT ROUND(100.0 * AVG(is_default)) FROM marts.v_portefeuille WHERE annuity_to_income > 0.3",
+      "erreur": ""
+    },
+    {
+      "id": "q28",
+      "question": "Quelle est la probabilité de défaut moyenne par classe de risque, en pourcentage ?",
+      "correct": true,
+      "attendu": [
+        1.66,
+        3.63,
+        7.1,
+        13.95,
+        31.04
+      ],
+      "obtenu": [
+        1.66,
+        3.63,
+        7.1,
+        13.95,
+        31.04
+      ],
+      "sql_agent": "SELECT risk_class, ROUND(100.0 * AVG(pd), 2) FROM marts.v_portefeuille GROUP BY risk_class ORDER BY risk_class",
+      "erreur": ""
+    },
+    {
+      "id": "q29",
+      "question": "Combien de clients de moins de 25 ans ont fait défaut ?",
+      "correct": true,
+      "attendu": [
+        1481.0
+      ],
+      "obtenu": [
+        1481.0
+      ],
+      "sql_agent": "SELECT COUNT(*) FROM marts.v_portefeuille WHERE age_years < 25 AND is_default = 1",
+      "erreur": ""
+    },
+    {
+      "id": "q30",
+      "question": "Quel est le montant de crédit moyen des clients de la classe de risque A ?",
+      "correct": true,
+      "attendu": [
+        644948.0
+      ],
+      "obtenu": [
+        644948.104893009
+      ],
+      "sql_agent": "SELECT AVG(credit_amount) FROM marts.v_portefeuille WHERE risk_class = 'A'",
+      "erreur": ""
+    }
+  ]
+}

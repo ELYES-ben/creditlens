@@ -1,0 +1,126 @@
+# =====================================================================
+# Questions-tests de l'agent text-to-SQL.
+# Chaque question a une requête SQL DE RÉFÉRENCE, écrite et vérifiée à la main.
+# L'évaluation compare le résultat de l'agent à celui de cette requête :
+# les chiffres attendus ne sont donc jamais écrits en dur, ils sont recalculés.
+# =====================================================================
+
+- id: q01
+  question: "Combien de clients y a-t-il dans le portefeuille ?"
+  reference_sql: "SELECT COUNT(*) FROM marts.v_portefeuille"
+
+- id: q02
+  question: "Quel est le taux de défaut global du portefeuille, en pourcentage ?"
+  reference_sql: "SELECT ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille"
+
+- id: q03
+  question: "Combien de clients ont fait défaut ?"
+  reference_sql: "SELECT SUM(is_default) FROM marts.v_portefeuille"
+
+- id: q04
+  question: "Combien de clients y a-t-il dans chaque classe de risque ?"
+  reference_sql: "SELECT risk_class, COUNT(*) FROM marts.v_portefeuille GROUP BY risk_class ORDER BY risk_class"
+
+- id: q05
+  question: "Quel est le taux de défaut des clients de moins de 30 ans, en pourcentage ?"
+  reference_sql: "SELECT ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille WHERE age_years < 30"
+
+- id: q06
+  question: "Quel est le revenu moyen des clients ?"
+  reference_sql: "SELECT ROUND(AVG(income)) FROM marts.v_portefeuille"
+
+- id: q07
+  question: "Combien y a-t-il de femmes et combien d'hommes ?"
+  reference_sql: "SELECT gender, COUNT(*) FROM marts.v_portefeuille WHERE gender IS NOT NULL GROUP BY gender ORDER BY gender"
+
+- id: q08
+  question: "Quel est le taux de défaut des femmes et celui des hommes, en pourcentage ?"
+  reference_sql: "SELECT gender, ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille WHERE gender IS NOT NULL GROUP BY gender ORDER BY gender"
+
+- id: q09
+  question: "Quel est le montant moyen de crédit par type de contrat ?"
+  reference_sql: "SELECT contract_type, ROUND(AVG(credit_amount)) FROM marts.v_portefeuille GROUP BY contract_type ORDER BY contract_type"
+
+- id: q10
+  question: "Quel est le taux de défaut par niveau d'études, en pourcentage ?"
+  reference_sql: "SELECT education, ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille GROUP BY education ORDER BY education"
+
+- id: q11
+  question: "Combien de clients sont dans la classe de risque E ?"
+  reference_sql: "SELECT COUNT(*) FROM marts.v_portefeuille WHERE risk_class = 'E'"
+
+- id: q12
+  question: "Quelle est la probabilité de défaut moyenne du portefeuille, en pourcentage ?"
+  reference_sql: "SELECT ROUND(100.0 * AVG(pd), 2) FROM marts.v_portefeuille"
+
+- id: q13
+  question: "Quelle est la perte attendue totale du portefeuille ?"
+  reference_sql: "SELECT ROUND(SUM(expected_loss)) FROM marts.v_portefeuille"
+
+- id: q14
+  question: "Quel est l'âge moyen des clients qui ont fait défaut ?"
+  reference_sql: "SELECT ROUND(AVG(age_years), 1) FROM marts.v_portefeuille WHERE is_default = 1"
+
+- id: q15
+  question: "Quel est le taux de défaut par type de revenu, en pourcentage ?"
+  reference_sql: "SELECT income_type, ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille GROUP BY income_type ORDER BY income_type"
+
+- id: q16
+  question: "Combien de clients ont déjà eu au moins une demande de crédit refusée par le passé ?"
+  reference_sql: "SELECT COUNT(*) FROM marts.v_portefeuille WHERE prev_nb_refused > 0"
+
+- id: q17
+  question: "Quel est le taux d'effort moyen (annuity_to_income) des clients ?"
+  reference_sql: "SELECT ROUND(AVG(annuity_to_income), 3) FROM marts.v_portefeuille"
+
+- id: q18
+  question: "Quel est le montant de crédit maximum accordé ?"
+  reference_sql: "SELECT MAX(credit_amount) FROM marts.v_portefeuille"
+
+- id: q19
+  question: "Quel est le taux de défaut des clients de la classe de risque D, en pourcentage ?"
+  reference_sql: "SELECT ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille WHERE risk_class = 'D'"
+
+- id: q20
+  question: "Combien de clients ont un revenu supérieur à 200000 ?"
+  reference_sql: "SELECT COUNT(*) FROM marts.v_portefeuille WHERE income > 200000"
+
+- id: q21
+  question: "Quelle est la perte attendue moyenne par classe de risque ?"
+  reference_sql: "SELECT risk_class, ROUND(AVG(expected_loss)) FROM marts.v_portefeuille GROUP BY risk_class ORDER BY risk_class"
+
+- id: q22
+  question: "Quel est le nombre moyen de crédits dans d'autres établissements (bureau_nb_credits) ?"
+  reference_sql: "SELECT ROUND(AVG(bureau_nb_credits), 2) FROM marts.v_portefeuille"
+
+- id: q23
+  question: "Quel est le taux de défaut des clients mariés, en pourcentage ?"
+  reference_sql: "SELECT ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille WHERE family_status = 'Married'"
+
+- id: q24
+  question: "Quels sont les 5 types de logement et le nombre de clients pour chacun ?"
+  reference_sql: "SELECT housing_type, COUNT(*) FROM marts.v_portefeuille GROUP BY housing_type ORDER BY COUNT(*) DESC LIMIT 5"
+
+- id: q25
+  question: "Quel est le revenu moyen des clients qui ont fait défaut et de ceux qui n'ont pas fait défaut ?"
+  reference_sql: "SELECT is_default, ROUND(AVG(income)) FROM marts.v_portefeuille GROUP BY is_default ORDER BY is_default"
+
+- id: q26
+  question: "Combien de clients ont une part d'échéances en retard (inst_late_share) supérieure à 0.2 ?"
+  reference_sql: "SELECT COUNT(*) FROM marts.v_portefeuille WHERE inst_late_share > 0.2"
+
+- id: q27
+  question: "Quel est le taux de défaut des clients ayant un taux d'effort supérieur à 0.3, en pourcentage ?"
+  reference_sql: "SELECT ROUND(100.0 * AVG(is_default), 2) FROM marts.v_portefeuille WHERE annuity_to_income > 0.3"
+
+- id: q28
+  question: "Quelle est la probabilité de défaut moyenne par classe de risque, en pourcentage ?"
+  reference_sql: "SELECT risk_class, ROUND(100.0 * AVG(pd), 2) FROM marts.v_portefeuille GROUP BY risk_class ORDER BY risk_class"
+
+- id: q29
+  question: "Combien de clients de moins de 25 ans ont fait défaut ?"
+  reference_sql: "SELECT SUM(is_default) FROM marts.v_portefeuille WHERE age_years < 25"
+
+- id: q30
+  question: "Quel est le montant de crédit moyen des clients de la classe de risque A ?"
+  reference_sql: "SELECT ROUND(AVG(credit_amount)) FROM marts.v_portefeuille WHERE risk_class = 'A'"

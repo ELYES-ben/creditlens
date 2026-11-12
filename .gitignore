@@ -4,6 +4,10 @@
 # Données brutes : trop lourdes et disponibles sur Kaggle
 data/raw/*
 
+# Index RAG régénérable (recalculé par `rag build`)
+data/regulations/_index.npz
+data/regulations/_chunks.json
+
 # Environnement Python
 .venv/
 __pycache__/
@@ -17,5 +21,6 @@ __pycache__/
 # Fichiers système
 Thumbs.db
 .DS_Store
+
 # Modèles entraînés (régénérables)
 models/

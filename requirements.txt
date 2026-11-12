@@ -12,3 +12,9 @@ lightgbm>=4.5          # modèle d'arbres de décision (gradient boosting)
 shap>=0.46             # explication des prédictions
 matplotlib>=3.8        # graphiques
 tabulate>=0.9          # tableaux Markdown dans les rapports
+
+
+# Brique 4 : IA générative
+# (LLM local et gratuit via Ollama : aucune bibliothèque payante nécessaire)
+mcp>=1.0               # protocole MCP : serveur et client de l'agent text-to-SQL
+pyyaml>=6.0            # lecture des questions d'évaluation (evals/questions.yaml)
